@@ -8,7 +8,7 @@
 <h2 class="text-primary text-center mb-4">Crear Nuevo Evento</h2>
 
 <div class="row">
-    <div class="col-md-6 offset-md-3 offset-md-3">
+    <div class="col-md-6 md-3">
         <form asp-action="Create" class="border p-4 shadow-sm rounded bg-light">
             <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
@@ -31,12 +31,12 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 offset-md-3 offset-md-3 mb-3">
+                <div class="col-md-6 md-3 mb-3">
                     <label asp-for="Fecha" class="form-label fw-semibold"></label>
                     <input asp-for="Fecha" class="form-control" type="date" />
                     <span asp-validation-for="Fecha" class="text-danger"></span>
                 </div>
-                <div class="col-md-6 offset-md-3 offset-md-3 mb-3">
+                <div class="col-md-6 md-3 mb-3">
                     <label asp-for="Hora" class="form-label fw-semibold"></label>
                     <input asp-for="Hora" class="form-control" type="time" />
                     <span asp-validation-for="Hora" class="text-danger"></span>

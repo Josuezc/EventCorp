@@ -106,7 +106,7 @@ namespace EventCorp.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre", evento.CategoriaId);
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Name", evento.UsuarioRegistroId);
+            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "UserName", evento.UsuarioRegistroId);
             return View(evento);
         }
 
@@ -152,7 +152,7 @@ namespace EventCorp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre", evento.CategoriaId);
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Name", evento.UsuarioRegistroId);
+            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "UserName", evento.UsuarioRegistroId);
             return View(evento);
         }
 

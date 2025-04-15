@@ -5,8 +5,8 @@ namespace Q_Manage.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        
 
-       
+      
+
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCorp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250415025103_init1")]
+    [Migration("20250415035414_init1")]
     partial class init1
     {
         /// <inheritdoc />
@@ -168,19 +168,19 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c44909e2-8428-4706-a3a4-485b987ddb46",
+                            Id = "9c754aec-3027-4df8-9311-7ccd49995180",
                             Name = "administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "0a85c072-26de-455a-932d-078da1923085",
+                            Id = "aa76cdbf-94d0-4a12-a3d6-fd7c351009b4",
                             Name = "organizador",
                             NormalizedName = "ORGANIZADOR"
                         },
                         new
                         {
-                            Id = "caea6f66-20d7-4534-bae6-9958e24068d7",
+                            Id = "c1a7a850-3105-44c5-ab31-b6ab8827aa15",
                             Name = "usuario",
                             NormalizedName = "USUARIO"
                         });
@@ -277,18 +277,18 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "683cd650-1e44-4cc8-97d7-934d99dabcd5",
-                            RoleId = "c44909e2-8428-4706-a3a4-485b987ddb46"
+                            UserId = "85edfcc1-7d5b-43da-8e8d-e5fb4bf668c8",
+                            RoleId = "9c754aec-3027-4df8-9311-7ccd49995180"
                         },
                         new
                         {
-                            UserId = "85cf393c-b1f9-4ce5-b19e-a77be83ecb8e",
-                            RoleId = "caea6f66-20d7-4534-bae6-9958e24068d7"
+                            UserId = "08a6cf96-ee9f-4503-96ac-81de7b6b9bf0",
+                            RoleId = "c1a7a850-3105-44c5-ab31-b6ab8827aa15"
                         },
                         new
                         {
-                            UserId = "08338594-b5ba-43fd-ba41-798fef555063",
-                            RoleId = "0a85c072-26de-455a-932d-078da1923085"
+                            UserId = "fe787f22-d7e7-42bf-9a2d-bfcce1918933",
+                            RoleId = "aa76cdbf-94d0-4a12-a3d6-fd7c351009b4"
                         });
                 });
 
@@ -380,49 +380,49 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "683cd650-1e44-4cc8-97d7-934d99dabcd5",
+                            Id = "85edfcc1-7d5b-43da-8e8d-e5fb4bf668c8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b8d74fd5-6718-43d0-9c40-3c52df5f2e1b",
+                            ConcurrencyStamp = "00d9a8f0-dd35-4800-8371-eff8e863c7a6",
                             Email = "administrador@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRADOR@GMAIL.COM",
                             NormalizedUserName = "ADMINISTRADOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENAZ0JVH31jYPBFcgoiu40wCeSwcdxkCdEUg475ZaQxmRPuudDR5l7rw8qzsfTjjSg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG2AQaQ7KarDh+dQk2yCuKRf59cXyVVgeL/O5GbOTRIDN6fjYfS/8eshQ06mMVS4BQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da02b013-2a3d-4df3-baac-2010abe99293",
+                            SecurityStamp = "cf44f69c-9823-4130-9d96-87edb62cada0",
                             TwoFactorEnabled = false,
                             UserName = "administrador@gmail.com"
                         },
                         new
                         {
-                            Id = "85cf393c-b1f9-4ce5-b19e-a77be83ecb8e",
+                            Id = "08a6cf96-ee9f-4503-96ac-81de7b6b9bf0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5b245610-3f59-417c-8a94-a9976ccd4344",
+                            ConcurrencyStamp = "14206b1a-c655-40ae-8fdb-a5c99314cfe6",
                             Email = "organizador@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZADOR@GMAIL.COM",
                             NormalizedUserName = "ORGANIZADOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF71pKLu/f5C2GtDTUraB4MbCWWF/kCoXu7dteVKOYWOeo+Dp54WdHQj3WumodJCQw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN+pVHF7Xwo1T8nwY/0pvl6e40EbJq6KaDbI9Jp1DUnzx8Qj+F0WFwXfcaCwLETaHQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4ae51547-5f0c-4cb2-8688-803ccfd55959",
+                            SecurityStamp = "9c8b9049-248a-476a-9f34-b8a2ad5ce655",
                             TwoFactorEnabled = false,
                             UserName = "organizador@gmail.com"
                         },
                         new
                         {
-                            Id = "08338594-b5ba-43fd-ba41-798fef555063",
+                            Id = "fe787f22-d7e7-42bf-9a2d-bfcce1918933",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "921477fa-4983-46a2-b970-13afc9a8dcb5",
+                            ConcurrencyStamp = "17d6f51f-3143-4991-bec5-6ef29966e95d",
                             Email = "usuario@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USUARIO@GMAIL.COM",
                             NormalizedUserName = "USUARIO@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENIGFlvNFNmzQJPfgD6r8dL9kyCBXlvftf01sin3N9+2fuAJTBObjMuFZ2QkvT6TdA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHlM2flv4FHYQhGHXsOZXNxY2byzC0ZRVA+zMCjJsxxF6ycEELLbsZQGs+L5RjlVeA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d8be31ed-fe32-4edc-aaf0-8f81507387f7",
+                            SecurityStamp = "1c6864dc-618d-46cc-88c4-a3d2da9edf11",
                             TwoFactorEnabled = false,
                             UserName = "usuario@gmail.com"
                         });
