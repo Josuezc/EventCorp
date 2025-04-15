@@ -78,7 +78,7 @@ namespace EventCorp.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FechaRegistro")
+                    b.Property<DateTime?>("FechaRegistro")
                         .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("Hora")
@@ -95,7 +95,6 @@ namespace EventCorp.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("UsuarioRegistroId")
-                        .IsRequired()
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
@@ -166,19 +165,19 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f7cb4529-e2f7-48d0-a14f-c3985ce27a5c",
+                            Id = "c44909e2-8428-4706-a3a4-485b987ddb46",
                             Name = "administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "e3b36266-4e10-49f0-abc6-955e05666802",
+                            Id = "0a85c072-26de-455a-932d-078da1923085",
                             Name = "organizador",
                             NormalizedName = "ORGANIZADOR"
                         },
                         new
                         {
-                            Id = "a649e5c0-c937-450d-8169-97ddca3f1444",
+                            Id = "caea6f66-20d7-4534-bae6-9958e24068d7",
                             Name = "usuario",
                             NormalizedName = "USUARIO"
                         });
@@ -275,18 +274,18 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "68f16536-8e43-43ac-a3fa-97a6c9248966",
-                            RoleId = "f7cb4529-e2f7-48d0-a14f-c3985ce27a5c"
+                            UserId = "683cd650-1e44-4cc8-97d7-934d99dabcd5",
+                            RoleId = "c44909e2-8428-4706-a3a4-485b987ddb46"
                         },
                         new
                         {
-                            UserId = "484de46e-04da-4dd1-920a-769adfa312b1",
-                            RoleId = "a649e5c0-c937-450d-8169-97ddca3f1444"
+                            UserId = "85cf393c-b1f9-4ce5-b19e-a77be83ecb8e",
+                            RoleId = "caea6f66-20d7-4534-bae6-9958e24068d7"
                         },
                         new
                         {
-                            UserId = "4cad4cdc-02a1-404f-b703-2f0a47b7a34b",
-                            RoleId = "e3b36266-4e10-49f0-abc6-955e05666802"
+                            UserId = "08338594-b5ba-43fd-ba41-798fef555063",
+                            RoleId = "0a85c072-26de-455a-932d-078da1923085"
                         });
                 });
 
@@ -378,49 +377,49 @@ namespace EventCorp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68f16536-8e43-43ac-a3fa-97a6c9248966",
+                            Id = "683cd650-1e44-4cc8-97d7-934d99dabcd5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e888e3fb-f6c5-4e4a-94f7-2c797944d11b",
+                            ConcurrencyStamp = "b8d74fd5-6718-43d0-9c40-3c52df5f2e1b",
                             Email = "administrador@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRADOR@GMAIL.COM",
                             NormalizedUserName = "ADMINISTRADOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFWL8rLVjj/Kmdf+O4oWQnm+cuyorKrb4lUDzgawJlFdwL12rOJTFy5fH42e596gRA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENAZ0JVH31jYPBFcgoiu40wCeSwcdxkCdEUg475ZaQxmRPuudDR5l7rw8qzsfTjjSg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d543a0c7-c21e-4290-a0a5-64e55c5a3743",
+                            SecurityStamp = "da02b013-2a3d-4df3-baac-2010abe99293",
                             TwoFactorEnabled = false,
                             UserName = "administrador@gmail.com"
                         },
                         new
                         {
-                            Id = "484de46e-04da-4dd1-920a-769adfa312b1",
+                            Id = "85cf393c-b1f9-4ce5-b19e-a77be83ecb8e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a45da222-1aeb-45c8-9e32-64635e4b4310",
+                            ConcurrencyStamp = "5b245610-3f59-417c-8a94-a9976ccd4344",
                             Email = "organizador@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZADOR@GMAIL.COM",
                             NormalizedUserName = "ORGANIZADOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFTyL1iorhZ9qIm4uP3AYJASOyJIJP7v7x3wN4AyT5JpmOgs9mIY10bHhXgIl2BIpw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF71pKLu/f5C2GtDTUraB4MbCWWF/kCoXu7dteVKOYWOeo+Dp54WdHQj3WumodJCQw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "951a4470-9e68-40c4-8b15-f26471348552",
+                            SecurityStamp = "4ae51547-5f0c-4cb2-8688-803ccfd55959",
                             TwoFactorEnabled = false,
                             UserName = "organizador@gmail.com"
                         },
                         new
                         {
-                            Id = "4cad4cdc-02a1-404f-b703-2f0a47b7a34b",
+                            Id = "08338594-b5ba-43fd-ba41-798fef555063",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c84ee72e-659d-44f3-92fe-f25056d9440e",
+                            ConcurrencyStamp = "921477fa-4983-46a2-b970-13afc9a8dcb5",
                             Email = "usuario@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USUARIO@GMAIL.COM",
                             NormalizedUserName = "USUARIO@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMNJ4jsew+zUj/1ahYyXOfX5l0nzb6jIxsHVsd81F3iTU1TEsBgtqj3hsfkEMwPnpw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENIGFlvNFNmzQJPfgD6r8dL9kyCBXlvftf01sin3N9+2fuAJTBObjMuFZ2QkvT6TdA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d23b5b9d-c535-4149-a607-f2dcae87fd17",
+                            SecurityStamp = "d8be31ed-fe32-4edc-aaf0-8f81507387f7",
                             TwoFactorEnabled = false,
                             UserName = "usuario@gmail.com"
                         });
@@ -448,8 +447,7 @@ namespace EventCorp.Migrations
                     b.HasOne("Q_Manage.Models.ApplicationUser", "UsuarioRegistro")
                         .WithMany()
                         .HasForeignKey("UsuarioRegistroId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Categoria");
 

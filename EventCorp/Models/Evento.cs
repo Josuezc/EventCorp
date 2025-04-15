@@ -41,16 +41,16 @@ namespace EventCorp.Models
         [Range(1, int.MaxValue, ErrorMessage = "El cupo debe ser mayor a 0.")]
         public int CupoMaximo { get; set; }
 
-        [Required]
-        public DateTime FechaRegistro { get; set; }
+      
+        public DateTime? FechaRegistro { get; set; }
 
-        [Required]
+        
         [StringLength(450)]
-        public string UsuarioRegistroId { get; set; }
+        public string? UsuarioRegistroId { get; set; }
 
         [ForeignKey("UsuarioRegistroId")]
         public ApplicationUser? UsuarioRegistro { get; set; }
 
-        public ICollection<Inscripcion> Inscripciones { get; set; }
+        public ICollection<Inscripcion>? Inscripciones { get; set; }
     }
 }

@@ -7,16 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventCorp.Data;
 using EventCorp.Models;
+using Microsoft.AspNetCore.Identity;
+using Q_Manage.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventCorp.Controllers
 {
+    [Authorize(Roles = "administrador")]
     public class EventoController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public EventoController(ApplicationDbContext context)
+        public EventoController(ApplicationDbContext context, UserManager<ApplicationUser> userManager )  
+            
         {
             _context = context;
+            _userManager = userManager;
         }
 
         
@@ -50,24 +57,39 @@ namespace EventCorp.Controllers
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre");
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+               return View();
         }
 
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,CategoriaId,Fecha,Hora,DuracionMinutos,Ubicacion,CupoMaximo,FechaRegistro,UsuarioRegistroId")] Evento evento)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,CategoriaId,Fecha,Hora,DuracionMinutos,Ubicacion,CupoMaximo")] Evento evento)
         {
+            evento.FechaRegistro = DateTime.Now;
+            evento.UsuarioRegistroId = _userManager.GetUserId(User);
+            if (evento.Fecha < DateTime.Today)
+            {
+                ModelState.AddModelError("Fecha", "La fecha del evento no puede estar en el pasado.");
+            }
+            if (evento.DuracionMinutos <= 0)
+            {
+                ModelState.AddModelError("DuracionMinutos", "La duración debe ser mayor a 0.");
+            }
+            if (evento.CupoMaximo <= 0)
+            {
+                ModelState.AddModelError("CupoMaximo", "El cupo máximo debe ser mayor a 0.");
+            }
+           
             if (ModelState.IsValid)
             {
+                
                 _context.Add(evento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+           
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre", evento.CategoriaId);
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Id", evento.UsuarioRegistroId);
-            return View(evento);
+             return View(evento);
         }
 
         
@@ -84,7 +106,7 @@ namespace EventCorp.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre", evento.CategoriaId);
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Id", evento.UsuarioRegistroId);
+            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Name", evento.UsuarioRegistroId);
             return View(evento);
         }
 
@@ -97,7 +119,18 @@ namespace EventCorp.Controllers
             {
                 return NotFound();
             }
-
+            if (evento.Fecha < DateTime.Today)
+            {
+                ModelState.AddModelError("Fecha", "La fecha del evento no puede estar en el pasado.");
+            }
+            if (evento.DuracionMinutos <= 0)
+            {
+                ModelState.AddModelError("DuracionMinutos", "La duración debe ser mayor a 0.");
+            }
+            if (evento.CupoMaximo <= 0)
+            {
+                ModelState.AddModelError("CupoMaximo", "El cupo máximo debe ser mayor a 0.");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -119,7 +152,7 @@ namespace EventCorp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre", evento.CategoriaId);
-            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Id", evento.UsuarioRegistroId);
+            ViewData["UsuarioRegistroId"] = new SelectList(_context.Users, "Id", "Name", evento.UsuarioRegistroId);
             return View(evento);
         }
 
@@ -143,7 +176,7 @@ namespace EventCorp.Controllers
             return View(evento);
         }
 
-        // POST: Evento/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

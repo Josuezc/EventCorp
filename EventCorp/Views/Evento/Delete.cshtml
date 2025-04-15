@@ -1,81 +1,54 @@
 ﻿@model EventCorp.Models.Evento
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Evento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h2 class="text-danger mb-4">¿Está seguro que desea eliminar este evento?</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Evento</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Hora)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Hora)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DuracionMinutos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DuracionMinutos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ubicacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ubicacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CupoMaximo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CupoMaximo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioRegistro.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4 fw-semibold">Título</dt>
+            <dd class="col-sm-8">@Model.Titulo</dd>
+
+            <dt class="col-sm-4 fw-semibold">Descripción</dt>
+            <dd class="col-sm-8">@Model.Descripcion</dd>
+
+            <dt class="col-sm-4 fw-semibold">Categoría</dt>
+            <dd class="col-sm-8">@Model.Categoria?.Nombre</dd>
+
+            <dt class="col-sm-4 fw-semibold">Fecha</dt>
+            <dd class="col-sm-8">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-4 fw-semibold">Hora</dt>
+            <dd class="col-sm-8">@Model.Hora.ToString(@"hh\:mm")</dd>
+
+            <dt class="col-sm-4 fw-semibold">Duración (min)</dt>
+            <dd class="col-sm-8">@Model.DuracionMinutos</dd>
+
+            <dt class="col-sm-4 fw-semibold">Ubicación</dt>
+            <dd class="col-sm-8">@Model.Ubicacion</dd>
+
+            <dt class="col-sm-4 fw-semibold">Cupo Máximo</dt>
+            <dd class="col-sm-8">@Model.CupoMaximo</dd>
+
+            <dt class="col-sm-4 fw-semibold">Fecha de Registro</dt>
+            <dd class="col-sm-8">@Model.FechaRegistro?.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-4 fw-semibold">Usuario que Registró</dt>
+            <dd class="col-sm-8">@Model.UsuarioRegistro?.UserName</dd>
+        </dl>
+    </div>
 </div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <div class="d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Cancelar
+        </a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" onclick="return confirm('¿Está completamente seguro? Esta acción no se puede deshacer.');" />
+    </div>
+</form>

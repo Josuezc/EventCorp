@@ -1,0 +1,70 @@
+﻿@model Dashboard
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary mb-5">Panel de Administración</h2>
+
+<div class="row justify-content-center mb-5">
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-primary shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Eventos creados</h5>
+                <p class="card-text display-6 fw-bold">@Model.TotalEventos</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-success shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Usuarios activos</h5>
+                <p class="card-text display-6 fw-bold">@Model.TotalUsuarios</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-warning shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Asistentes del mes</h5>
+                <p class="card-text display-6 fw-bold">@Model.AsistentesxMes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="text-center mt-5 mb-4">Top 5 Eventos Más Populares</h4>
+
+@if (Model.Top5Eventos.Any())
+{
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-hover table-bordered shadow-sm">
+                <thead class="table-light text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Título</th>
+                        <th>Fecha</th>
+                        <th>Asistentes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Top5Eventos.Count; i++)
+                    {
+                        <tr class="text-center align-middle">
+                            <td>@(i + 1)</td>
+                            <td class="text-start">@Model.Top5Eventos[i].Titulo</td>
+                            <td>@Model.Top5Eventos[i].Fecha.ToString("dd/MM/yyyy")</td>
+                            <td>@Model.Top5Eventos[i].Inscripciones.Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info text-center">No hay eventos disponibles para mostrar.</div>
+}
