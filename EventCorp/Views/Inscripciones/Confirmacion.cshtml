@@ -1,0 +1,19 @@
+﻿@model EventCorp.Models.Evento
+@{
+    ViewData["Title"] = "Confirmación de inscripción";
+}
+
+<div class="container py-5 text-center">
+    <div class="alert alert-success shadow-sm py-4">
+        <h4 class="fw-bold mb-3">¡Inscripción exitosa!</h4>
+        <p class="mb-0">Te has inscrito correctamente al evento:</p>
+        <h5 class="text-primary mt-2">@Model.Titulo</h5>
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Evento" asp-action="Disponibles" class="btn btn-outline-primary me-2">
+            Ver otros eventos
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-link">Ir al inicio</a>
+    </div>
+</div>

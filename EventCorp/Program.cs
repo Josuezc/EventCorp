@@ -44,4 +44,53 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+app.MapGet("/api/events", async (ApplicationDbContext db) =>
+{
+    var hoy = DateTime.Today;
+
+    var eventos = await db.Eventos
+        .Include(e => e.Categoria)
+        .Where(e => e.Fecha >= hoy)
+        .OrderBy(e => e.Fecha)
+        .Select(e => new
+        {
+            e.Id,
+            e.Titulo,
+            e.Descripcion,
+            e.Fecha,
+            e.Hora,
+            e.DuracionMinutos,
+            e.Ubicacion,
+            e.CupoMaximo,
+            Categoria = e.Categoria != null ? e.Categoria.Nombre : null
+        })
+        .ToListAsync();
+
+    return Results.Ok(eventos);
+});
+
+app.MapGet("/api/events/{id:int}", async (int id, ApplicationDbContext db) =>
+{
+    var evento = await db.Eventos
+        .Include(e => e.Categoria)
+        .FirstOrDefaultAsync(e => e.Id == id);
+
+    if (evento == null)
+        return Results.NotFound();
+
+    return Results.Ok(new
+    {
+        evento.Id,
+        evento.Titulo,
+        evento.Descripcion,
+        evento.Fecha,
+        evento.Hora,
+        evento.DuracionMinutos,
+        evento.Ubicacion,
+        evento.CupoMaximo,
+        Categoria = evento.Categoria != null ? evento.Categoria.Nombre : null
+    });
+});
+
+
 app.Run();

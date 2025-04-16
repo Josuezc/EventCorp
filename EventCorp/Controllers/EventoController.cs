@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EventCorp.Controllers
 {
-    [Authorize(Roles = "administrador")]
     public class EventoController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -26,7 +25,27 @@ namespace EventCorp.Controllers
             _userManager = userManager;
         }
 
-        
+        public async Task<IActionResult> Disponibles()
+        {
+            var hoy = DateTime.Today;
+            var user = await _userManager.GetUserAsync(User);
+
+            var eventos = await _context.Eventos
+                .Include(e => e.Categoria)
+                .Where(e => e.Fecha >= hoy)
+                .OrderBy(e => e.Fecha)
+                .ToListAsync();
+
+            var inscritos = await _context.Inscripciones
+                .Where(i => i.UsuarioId == user.Id)
+                .Select(i => i.EventoId)
+                .ToListAsync();
+
+            ViewBag.EventosInscritos = inscritos;
+
+            return View(eventos);
+        }
+
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Eventos.Include(e => e.Categoria).Include(e => e.UsuarioRegistro);

@@ -15,6 +15,11 @@ namespace EventCorp.Models
         [StringLength(100, ErrorMessage = "El nombre no puede superar los 100 caracteres.")]
         public string Nombre { get; set; }
 
+
+        [Required(ErrorMessage = "La descripción es obligatoria.")]
+        [StringLength(500, ErrorMessage = "La Descripción no puede superar los 500 caracteres.")]
+        public string Descripcion {  get; set; }
+
         [Required]
         public bool Estado { get; set; }
 

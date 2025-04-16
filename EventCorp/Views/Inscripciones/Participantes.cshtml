@@ -1,0 +1,61 @@
+﻿@model EventCorp.Models.Evento
+@{
+    ViewData["Title"] = "Participantes del evento";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success fw-semibold">
+        @TempData["Success"]
+    </div>
+}
+
+<div class="container py-4">
+    <h3 class="mb-4">Participantes de: @Model.Titulo</h3>
+
+    @if (!Model.Inscripciones.Any())
+    {
+        <div class="alert alert-warning">No hay usuarios inscritos en este evento.</div>
+    }
+    else
+    {
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Asistencia</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inscripcion in Model.Inscripciones)
+                {
+                    <tr>
+                        <td>@inscripcion.Usuario?.UserName</td>
+                        <td>@inscripcion.Usuario?.Email</td>
+                        <td>
+                            <span class="badge bg-@(inscripcion.Asistio ? "success" : "secondary")">
+                                @(inscripcion.Asistio ? "Sí" : "No")
+                            </span>
+                        </td>
+                        <td>
+                            @if (!inscripcion.Asistio)
+                            {
+                                <form asp-action="MarcarAsistencia" method="post" class="d-inline">
+                                    <input type="hidden" name="inscripcionId" value="@inscripcion.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-success">
+                                        Marcar asistencia
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Marcado</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

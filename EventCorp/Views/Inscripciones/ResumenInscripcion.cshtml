@@ -1,0 +1,60 @@
+﻿@model EventCorp.Models.Evento
+@{
+    ViewData["Title"] = "Resumen de inscripción";
+}
+
+<div class="container py-5 text-center">
+
+    @* 🟡 Mostrar mensaje de error si hay *@
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger shadow-sm fw-semibold mb-4">
+            @TempData["Error"]
+        </div>
+    }
+
+    @* ✅ Mostrar mensaje de éxito si hay *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success shadow-sm fw-semibold mb-4">
+            @TempData["Success"]
+        </div>
+    }
+
+    @* 🔷 Mensaje principal cuando se llega desde la inscripción *@
+    @if (TempData["Success"] == null && TempData["Error"] == null)
+    {
+        <div class="alert alert-info shadow-sm fw-semibold mb-4">
+            Información del evento al que estás inscrito.
+        </div>
+    }
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h3 class="text-primary fw-bold">@Model.Titulo</h3>
+            <p class="text-muted">@Model.Categoria?.Nombre</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-start">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <p><strong>📅 Fecha:</strong> @Model.Fecha.ToString("dd/MM/yyyy")</p>
+                    <p><strong>🕒 Hora:</strong> @Model.Hora.ToString(@"hh\:mm")</p>
+                    <p><strong>⏱ Duración:</strong> @Model.DuracionMinutos minutos</p>
+                    <p><strong>📍 Ubicación:</strong> @Model.Ubicacion</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Evento" asp-action="Disponibles" class="btn btn-outline-primary me-2">
+            Ver más eventos
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-link">
+            Ir al inicio
+        </a>
+    </div>
+</div>

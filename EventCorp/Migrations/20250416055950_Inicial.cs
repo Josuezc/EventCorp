@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventCorp.Migrations
 {
     /// <inheritdoc />
-    public partial class init1 : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -165,6 +165,7 @@ namespace EventCorp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UsuarioRegistro = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
@@ -246,9 +247,9 @@ namespace EventCorp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "9c754aec-3027-4df8-9311-7ccd49995180", null, "administrador", "ADMINISTRADOR" },
-                    { "aa76cdbf-94d0-4a12-a3d6-fd7c351009b4", null, "organizador", "ORGANIZADOR" },
-                    { "c1a7a850-3105-44c5-ab31-b6ab8827aa15", null, "usuario", "USUARIO" }
+                    { "3a1d576e-0a04-4e29-be3e-499ae610f4d1", null, "administrador", "ADMINISTRADOR" },
+                    { "7f794bd0-f1ea-4d73-811f-04479cdfa179", null, "usuario", "USUARIO" },
+                    { "925c8172-1ab3-48e4-881e-41c642659992", null, "organizador", "ORGANIZADOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -256,9 +257,9 @@ namespace EventCorp.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "08a6cf96-ee9f-4503-96ac-81de7b6b9bf0", 0, "14206b1a-c655-40ae-8fdb-a5c99314cfe6", "organizador@gmail.com", true, false, null, "ORGANIZADOR@GMAIL.COM", "ORGANIZADOR@GMAIL.COM", "AQAAAAIAAYagAAAAEN+pVHF7Xwo1T8nwY/0pvl6e40EbJq6KaDbI9Jp1DUnzx8Qj+F0WFwXfcaCwLETaHQ==", null, false, "9c8b9049-248a-476a-9f34-b8a2ad5ce655", false, "organizador@gmail.com" },
-                    { "85edfcc1-7d5b-43da-8e8d-e5fb4bf668c8", 0, "00d9a8f0-dd35-4800-8371-eff8e863c7a6", "administrador@gmail.com", true, false, null, "ADMINISTRADOR@GMAIL.COM", "ADMINISTRADOR@GMAIL.COM", "AQAAAAIAAYagAAAAEG2AQaQ7KarDh+dQk2yCuKRf59cXyVVgeL/O5GbOTRIDN6fjYfS/8eshQ06mMVS4BQ==", null, false, "cf44f69c-9823-4130-9d96-87edb62cada0", false, "administrador@gmail.com" },
-                    { "fe787f22-d7e7-42bf-9a2d-bfcce1918933", 0, "17d6f51f-3143-4991-bec5-6ef29966e95d", "usuario@gmail.com", true, false, null, "USUARIO@GMAIL.COM", "USUARIO@GMAIL.COM", "AQAAAAIAAYagAAAAEHlM2flv4FHYQhGHXsOZXNxY2byzC0ZRVA+zMCjJsxxF6ycEELLbsZQGs+L5RjlVeA==", null, false, "1c6864dc-618d-46cc-88c4-a3d2da9edf11", false, "usuario@gmail.com" }
+                    { "0455e0ae-d9e8-4825-a339-c4c1e7512ce3", 0, "1aeef140-1ef4-406c-90ad-c11da35f6bd9", "usuario@gmail.com", true, false, null, "USUARIO@GMAIL.COM", "USUARIO@GMAIL.COM", "AQAAAAIAAYagAAAAEMjn3LXV3q+HNtQX+3T0qz2C6LAyybkJntfDaekjyu4FsRpOkXLsKgNBNtPeBdxf4A==", null, false, "05a243b7-9dcc-4b23-8e1a-2fad18331530", false, "usuario@gmail.com" },
+                    { "444b740b-06dd-4e22-ad8c-b3a79f5489c9", 0, "781ebc43-7460-4b1b-912c-34cb1b62cc2f", "organizador@gmail.com", true, false, null, "ORGANIZADOR@GMAIL.COM", "ORGANIZADOR@GMAIL.COM", "AQAAAAIAAYagAAAAEP9lAe89BIHBZ3N5E3nPdc5AGpiKeG0o+rxodWbWvW15eaOelBHUm6pblRPIbVGoXQ==", null, false, "b193aa32-0b6f-4db9-9247-27737be015ea", false, "organizador@gmail.com" },
+                    { "b3b8a3db-ec90-4875-a74b-637f54b790db", 0, "99ada680-9bc5-4f9d-9e7f-b5f2c4c75e55", "administrador@gmail.com", true, false, null, "ADMINISTRADOR@GMAIL.COM", "ADMINISTRADOR@GMAIL.COM", "AQAAAAIAAYagAAAAEEWQL0AY4TQiUMT+JYCFXXoyN/dDMmqCGWha8uvyhJlU0My5XJaZj0Bo3vqesHK/Yg==", null, false, "d0fb563e-fb05-4074-bd2a-3a5302d88213", false, "administrador@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -266,9 +267,9 @@ namespace EventCorp.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "c1a7a850-3105-44c5-ab31-b6ab8827aa15", "08a6cf96-ee9f-4503-96ac-81de7b6b9bf0" },
-                    { "9c754aec-3027-4df8-9311-7ccd49995180", "85edfcc1-7d5b-43da-8e8d-e5fb4bf668c8" },
-                    { "aa76cdbf-94d0-4a12-a3d6-fd7c351009b4", "fe787f22-d7e7-42bf-9a2d-bfcce1918933" }
+                    { "925c8172-1ab3-48e4-881e-41c642659992", "0455e0ae-d9e8-4825-a339-c4c1e7512ce3" },
+                    { "7f794bd0-f1ea-4d73-811f-04479cdfa179", "444b740b-06dd-4e22-ad8c-b3a79f5489c9" },
+                    { "3a1d576e-0a04-4e29-be3e-499ae610f4d1", "b3b8a3db-ec90-4875-a74b-637f54b790db" }
                 });
 
             migrationBuilder.CreateIndex(
