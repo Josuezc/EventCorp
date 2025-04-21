@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EventCorp.Controllers
 {
+    [Authorize(Roles = "administrador,organizador")]
     public class EventoController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -48,11 +49,30 @@ namespace EventCorp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Eventos.Include(e => e.Categoria).Include(e => e.UsuarioRegistro);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+
+            IQueryable<Evento> eventosQuery;
+
+            if (User.IsInRole("organizador"))
+            {
+                eventosQuery = _context.Eventos
+                    .Where(e => e.UsuarioRegistroId == user.Id);
+            }
+            else
+            {
+                eventosQuery = _context.Eventos;
+            }
+
+            var eventos = await eventosQuery
+                .Include(e => e.Categoria)
+                .Include(e => e.UsuarioRegistro)
+                .ToListAsync();
+
+            return View(eventos);
+
         }
 
-        
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -72,14 +92,21 @@ namespace EventCorp.Controllers
             return View(evento);
         }
 
-        
+
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre");
-               return View();
+            var categoriasActivas = _context.Categorias
+                .Where(c => c.Estado == true)
+                .OrderBy(c => c.Nombre)
+                .ToList();
+
+            ViewData["CategoriaId"] = new SelectList(categoriasActivas, "Id", "Nombre");
+
+            return View();
         }
 
-       
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,CategoriaId,Fecha,Hora,DuracionMinutos,Ubicacion,CupoMaximo")] Evento evento)

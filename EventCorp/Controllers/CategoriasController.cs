@@ -92,7 +92,9 @@ public class CategoriasController : Controller
                     throw;
             }
         }
+
         return View(categoria);
+
     }
 
     public async Task<IActionResult> Delete(int? id)

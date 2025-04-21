@@ -8,10 +8,11 @@
         <div class="col-md-8">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-white border-bottom">
-                    <h4 class="mb-0 fw-semibold">Nueva Categoría</h4>
+                    <h4 class="mb-0 fw-semibold">Editar Categoría</h4>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create" novalidate>
+                    <form asp-action="Edit" method="post" novalidate>
+                        <input type="hidden" asp-for="Id" />
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                         <div class="mb-3">
